@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fetch Tweets</title>\
+	<!--JQuery Reference-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!--Bootstrap reference-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!--Reference for custom CSS-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style-admin.css">
+
+	<!--Firebase Reference -->
+	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+</head>
+<body>
+
+	<div class="wrapper">
+		<nav id="sidebar">
+			<!--Sidebar Header-->
+			<div class="sidebar-header">
+				<h4>Menu</h4>
+			</div>
+
+			<!--Sidebar Menu-->
+			<ul id="sidebar-list" class="list-unstyled components">
+				<li class="active"><a href="#home-div">Home</a></li>
+				<li><a href="#tweets-div">Tweets</a></li>
+				<li><a href="#bitcoin-div">Bitcoin</a></li>
+				<li><a href="#contact-div">Contact</a></li>
+			</ul>
+		</nav>
+		<div id="main-container" class="container">
+			<div class="jumbotron text-center">
+				<h2>Admin Console</h2>
+			</div>
+			<div id="home-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Admin Console!!</h4>
+					<p>
+						Please click on the link to mavigate to the right page.<br>
+						Tweets - To load the most recent Tweets from the Bitcoin Twitter Handle.<br>
+						Bitcoin - To load the most recent Bitcoing Trends and Prices<br>
+						Contact - Contact Us for more Info!!
+					</p>					
+				</div>
+			</div>
+			<div id="tweets-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Tweets Page!!</h4>
+					<p>Please find below the latest tweets/trends from Bitcoin Twitter Handle. You can also refresh to retrieve the latest trends/tweets about bitcoin.</p>					
+				</div>
+				<div class="refresh-btn">
+					<!--<button class="btn btn-outline-secondary">Refresh Data</button>-->
+					<input id="refresh-tweets" type="submit" value="Refresh Data" class="btn btn-outline-secondary">
+				</div>
+			</div>
+			<div id="bitcoin-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Bitcoin Page!!</h4>
+					<p>Please find below the latest & historical pricing trends of Bitcoin. You can also refresh to retrieve the latest Bitcoin Price.</p>					
+				</div>
+				<div class="refresh-btn">
+					<button class="btn btn-outline-secondary">Refresh Data</button>
+				</div>
+			</div>
+			<div id="contact-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Contact Page!!</h4>
+					<p>Please don't try to get in touch with us, we are not responsible for any information displayed on the application. Any loss/gain incurred by trading Bitcoin is subjected to market risks. We do not endorse (directly or remotely) investing in bitcoin or any other cryptocurrency.</p>					
+				</div>
+			</div>						
+		</div>
+	</div>
+
+
+	<script  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment-with-locales.min.js"></script>
+	<!--JS File to fetch Tweets reference-->
+	<script type="text/javascript" src="assets/javascript/twitter-api.js"></script>
+
+</body>
+</html>
