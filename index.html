@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
   </head>
   <body>
     <div class="jumbotron">
-  <h1 class="display-3">TwitterBits</h1>
-  <p class="lead">What happens when people start tweeting about....?</p>
+  <h1 class="display-3">TwitCoin</h1>
+  <p class="lead">What happens to Bitcoin when people start tweeting about....?</p>
   <hr class="my-4">
-  <p>This is where the graph will go</p>
+  <div id="graph">
+    <svg width="600" height="300"></svg>
+  </div>
   <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" href="#">Twitter</a>
@@ -27,8 +29,10 @@
 </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.1.1.slim.min.js"></script>
+    <script src="libs/tether.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/d3.v4.min.js"></script>
+    <script src="graph.js"></script>
   </body>
 </html>
