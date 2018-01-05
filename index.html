@@ -1,40 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fetch Tweets</title>
+	<!--JQuery Reference-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="libs/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="jumbotron">
-  <h1 class="display-3">TwitCoin</h1>
-  <p class="lead">What happens to Bitcoin when people start tweeting about....?</p>
-  <hr class="my-4">
-  <div id="graph">
-    <svg width="600" height="300"></svg>
-  </div>
-  <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Twitter</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Bitcoin</a>
-  </li>
-   <!--<p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
-</div>
+	<!--Bootstrap reference-->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 
-    <!-- jQuery first, then Tether, then Bootstrap JS, then firebase.... -->
-    <script src="libs/jquery-3.1.1.slim.min.js"></script>
-    <script src="libs/tether.min.js"></script>
-    <script src="libs/bootstrap.min.js"></script>
-    <script src="libs/d3.v4.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="graph.js"></script>
-  </body>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+
+	<!--Reference for custom CSS-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style-admin.css">
+
+	<!--Firebase Reference -->
+	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+</head>
+<body>
+
+	<div class="wrapper">
+		<nav id="sidebar">
+			<!--Sidebar Header-->
+			<div class="sidebar-header">
+				<h4>Menu</h4>
+			</div>
+
+			<!--Sidebar Menu-->
+			<ul id="sidebar-list" class="list-unstyled components">
+				<li class="active"><a href="#home-div">Home</a></li>
+				<li><a href="#tweets-div">Tweets</a></li>
+				<li><a href="#bitcoin-div">Bitcoin</a></li>
+				<li><a href="#contact-div">Contact</a></li>
+			</ul>
+		</nav>
+		<div id="main-container" class="container">
+			<div class="jumbotron text-center">
+				<h2></h2>
+			</div>
+			<div id="home-div" class="hide-div">
+				<div class="text-center">
+          <h2>Bitcoin Price and #bitcoin Twitter Sentiment</h2>
+          <h3></h3>
+					<div id="graph">
+            <svg width="600" height="300"></svg>
+          </div>
+				</div>
+			</div>
+			<div id="tweets-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Tweets Page!!</h4>
+					<p>Please find below the latest tweets/trends from Bitcoin Twitter Handle. You can also refresh to retrieve the latest trends/tweets about bitcoin.</p>					
+				</div>
+				<div class="refresh-btn">
+					<!--<button class="btn btn-outline-secondary">Refresh Data</button>-->
+					<input id="refresh-tweets" type="submit" value="Refresh Data" class="btn btn-outline-secondary">
+				</div>
+				<div class="text-center">
+					<table class="table table-striped" id="tweet-data">
+						<thead>
+							<tr>
+								<th class="text-center">Date Time</th>
+								<th class="text-center">Tweet</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div id="bitcoin-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Bitcoin Page!!</h4>
+					<p>Please find below the latest & historical pricing trends of Bitcoin. You can also refresh to retrieve the latest Bitcoin Price.</p>					
+				</div>
+				<div class="refresh-btn">
+					<input id="refresh-bitcoin-data" type="submit" value="Refresh Data" class="btn btn-outline-secondary">					
+				</div>
+				<br>
+				<div>
+				  <!-- Nav tabs -->
+				  <ul class="nav nav-tabs" role="tablist">
+				    <li class="nav-item">
+				      <a class="nav-link active" data-toggle="tab" href="#price">Price</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#volume">Trading Volume</a>
+				    </li>
+				  </ul>
+
+				  <!-- Tab panes -->
+				  <div class="tab-content">
+				    <div id="price" class="container tab-pane active"><br>
+				      <h5 class="text-center">Bitcoin Price</h5>
+						<table class="table table-striped" id="price-data">
+							<thead>
+								<tr>
+									<th class="text-left">Date Time</th>
+									<th class="text-left">Price</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>				      
+				    </div>
+				    <div id="volume" class="container tab-pane fade"><br>
+				      <h5 class="text-center">Trading Volume</h5>
+						<table class="table table-striped" id="volume-data">
+							<thead>
+								<tr>
+									<th class="text-left">Date Time</th>
+									<th class="text-left">Volume</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>				      
+				    </div>
+				  </div>
+				</div>
+			</div>
+			<div id="contact-div" class="hide-div">
+				<div class="text-center">
+					<h4>Welcome to the Contact Page!!</h4>
+					<p>Please don't try to get in touch with us, we are not responsible for any information displayed on the application. Any loss/gain incurred by trading Bitcoin is subjected to market risks. We do not endorse (directly or remotely) investing in bitcoin or any other cryptocurrency.</p>					
+				</div>
+			</div>						
+		</div>
+	</div>
+
+
+	<script  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment-with-locales.min.js"></script>
+	<!--JS File to fetch Tweets reference-->
+  <script type="text/javascript" src="assets/javascript/twitter-api.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script src="https://rawgit.com/soops/sentimood/master/sentimood.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.2/d3.min.js"></script>
+  <script src='assets/javascript/jquery.base64.js'></script>
+  <script src="graph.js"></script>
+</body>
 </html>
